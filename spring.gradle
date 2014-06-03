@@ -1,0 +1,25 @@
+repositories {
+    maven {
+		url 'http://repo.gradle.org/gradle/demo'
+	}
+}
+
+configurations {
+	spring
+}
+
+dependencies {
+	spring 'com.mycomp.spring:rod:1.0@jpg'
+}
+
+def allSpringJars = tasks.withType(Jar).matching { jar -> jar.archiveName.contains('spring') }
+
+allSpringJars.all {
+	metaInf {
+		from configurations.spring
+	}
+	doLast {
+		ant.checksum(file: archivePath, todir: archivePath.parentFile)
+	}
+}
+

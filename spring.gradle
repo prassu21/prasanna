@@ -1,6 +1,6 @@
 repositories {
     maven {
-		urls: 'http://repo.gradle.org/gradle/demo'
+		url 'http://repo.gradle.org/gradle/demo'
 	}
 }
 
